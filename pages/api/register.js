@@ -2,9 +2,8 @@ import connectionDB from "../../utils/dbConnection";
 import bcrypt from "bcrypt";
 import UserModel from "../../models/users";
 
-connectionDB();
-
 export default async function handler(req, res) {
+  await connectionDB();
   if (req.method === "POST") {
     var { username, password } = req.body;
     password = await bcrypt.hash(password, 12);

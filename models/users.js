@@ -1,9 +1,8 @@
 import mongoose from "mongoose";
 
 const userSchema = mongoose.Schema({
-  username: String,
-  password: String,
-  //   jwtToken: String,
+  username: { type: String, unique: true, required: true },
+  password: { type: String, unique: true, required: true },
   createdAt: {
     type: Date,
     default: new Date(),
@@ -11,4 +10,4 @@ const userSchema = mongoose.Schema({
 });
 
 //because we use serverless functions
-export default mongoose.model.User || mongoose.model("User", userSchema);
+export default mongoose.models.User || mongoose.model("User", userSchema);

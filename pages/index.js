@@ -1,67 +1,37 @@
-import axios from "axios";
-import React, { useState } from "react";
+import styled from "styled-components";
+import agent from "../utils/agent";
+import { getCookies } from "cookies-next";
 
-export default function Home() {
-  const [username, setUsername] = useState("");
-  const [password, setPassword] = useState("");
+const Container = styled.div`
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  padding: 1em;
+`;
 
-  const mainDivStyle = {
-    padding: "1em",
+export default function Home({ response }) {
+  return <Container>{response}</Container>;
+}
+
+//add jwt token in the cookie and pass it in the server
+export async function getServerSideProps({ req, res }) {
+  const cookies = getCookies({ req, res });
+
+  let jwt = cookies.jwt;
+  let rfToken = cookies.rfToken;
+
+  //check if the cookies are not defined
+  if (!jwt || !rfToken) {
+    return {
+      redirect: {
+        permanent: false,
+        destination: `/login`,
+      },
+    };
+  }
+
+  let result = await agent.getUser(jwt, rfToken);
+  return {
+    props: { response: result.data },
   };
-
-  const formStyle = {
-    display: "flex",
-    flexDirection: "column",
-    maxWidth: "860px",
-  };
-
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-
-    const credentials = { username, password };
-
-    const { data } = await axios.post("/api/auth/login", credentials);
-
-    localStorage.setItem("jwt", data.token);
-  };
-
-  const handleGetUser = async () => {
-    const user = await axios.get("/api/user");
-
-    console.log(user);
-  };
-
-  const handleLogOut = async () => {
-    const user = await axios.get("/api/auth/logout");
-
-    console.log(user);
-  };
-
-  return (
-    <div style={mainDivStyle}>
-      <form style={formStyle} onSubmit={(e) => handleSubmit(e)}>
-        <label htmlFor="username"> Username </label>
-        <input
-          type="text"
-          name="username"
-          id="username"
-          onChange={(e) => setUsername(e.target.value)}
-        />
-
-        <label htmlFor="password"> Username </label>
-        <input
-          type="text"
-          name="password"
-          id="password"
-          onChange={(e) => setPassword(e.target.value)}
-        />
-
-        <button> Log in </button>
-      </form>
-
-      <button onClick={() => handleGetUser()}> User </button>
-
-      <button onClick={() => handleLogOut()}> Logout </button>
-    </div>
-  );
 }
