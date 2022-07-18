@@ -4,11 +4,12 @@ import connectionDB from "../../utils/dbConnection";
 import UserModel from "../../models/users";
 import RefreshToken from "../../models/refreshToken";
 import bcrypt from "bcrypt";
+import endpointHandler from "../../utils/endPointHandler";
 
 //add it in the env
 const secret = process.env.secret;
 
-export default async function (req, res) {
+async function POST(req, res) {
   await connectionDB();
   console.log(secret);
 
@@ -70,7 +71,9 @@ export default async function (req, res) {
     }
     res.status(401).json({ message: "passwords do not match" });
   } catch (error) {
-    console.log(error);
+    // console.log(error);
     res.status(401).json({ message: "Invalid Credentials" });
   }
 }
+
+export default endpointHandler({ POST });

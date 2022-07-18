@@ -29,7 +29,7 @@ export default async function handler(req, res) {
       res.status(200).json({ message: "new jwt token created", jwtToken });
     }
   } catch (error) {
-    console.log(error.message);
+    // console.log(error.message);
     res.status(403).json({ message: "invalid credentials" });
   }
 }

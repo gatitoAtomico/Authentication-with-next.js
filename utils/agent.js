@@ -29,7 +29,7 @@ function getAxiosInstance(jwt, rfToken) {
         console.log("jwt token is expired");
         let jwtToken = await refreshToken(rfToken);
 
-        setCookie("jwt", jwtToken);
+        // setCookie("jwt", jwtToken);
         //window.localStorage.setItem("jwt", response.data.jwtToken);
         axiosInstance.defaults.headers["authorization"] = `Bearer ${jwtToken}`;
 

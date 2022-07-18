@@ -10,7 +10,7 @@ const Container = styled.div`
 `;
 
 export default function Home({ response }) {
-  return <Container>{response}</Container>;
+  return <Container>{JSON.stringify(response)}</Container>;
 }
 
 //add jwt token in the cookie and pass it in the server
@@ -29,8 +29,10 @@ export async function getServerSideProps({ req, res }) {
       },
     };
   }
-
-  let result = await agent.getUser(jwt, rfToken);
+  console.log("HEllo?", jwt, rfToken);
+  let result = await agent.getUser(jwt, rfToken).catch((err) => {
+    return { data: "error" };
+  });
   return {
     props: { response: result.data },
   };

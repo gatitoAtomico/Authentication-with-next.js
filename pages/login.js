@@ -30,12 +30,15 @@ export default function Home() {
       return;
     } //dont proceed
 
-    refreshToken(rfToken).then((jwtToken) => {
-      setCookie("jwt", jwtToken);
-      setCookie("rfToken", rfToken);
-      setLoader(false);
-      router.push("/");
-    });
+    refreshToken(rfToken)
+      .then((jwtToken) => {
+        setCookie("jwt", jwtToken);
+        setCookie("rfToken", rfToken);
+        router.push("/");
+      })
+      .finally(() => {
+        setLoader(false);
+      });
   }, []);
 
   const formStyle = {
@@ -65,7 +68,7 @@ export default function Home() {
 
   const handleGetUser = async () => {
     const user = await axios.get("/api/user");
-    console.log(user);
+    // console.log(user);
   };
 
   const handleLogOut = async () => {
