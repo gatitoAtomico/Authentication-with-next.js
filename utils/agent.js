@@ -45,6 +45,6 @@ function getAxiosInstance(jwt, rfToken) {
 
 export default {
   getUser: (jwt, rfToken) => {
-    return getAxiosInstance(jwt, rfToken).get("/auth/hello");
+    return getAxiosInstance(jwt, rfToken).get("/auth/analysisAutomation");
   },
 };
