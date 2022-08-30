@@ -98,7 +98,7 @@ export default function Home() {
             onChange={(e) => setPassword(e.target.value)}
           />
 
-          <button> Log in </button>
+          <button> Log ins </button>
         </form>
       </FormContainer>
 
