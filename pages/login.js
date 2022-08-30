@@ -98,7 +98,7 @@ export default function Home() {
             onChange={(e) => setPassword(e.target.value)}
           />
 
-          <button> Log </button>
+          <button> Apollon </button>
         </form>
       </FormContainer>
 
