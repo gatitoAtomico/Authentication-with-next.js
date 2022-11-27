@@ -3,8 +3,7 @@ import mongoose from "mongoose";
 var connection;
 
 //using db atlas cluster, rememer to add them in the env
-const CONNECTION_URL =
-  "mongodb+srv://george:y0uJ6FfIXbcYpo9P@cluster0.mlvuq.mongodb.net/authenticationDatabase?retryWrites=true&w=majority";
+const CONNECTION_URL = process.env.mongoDBAtlas;
 
 export default async function connectionDB() {
   if (!connection) {

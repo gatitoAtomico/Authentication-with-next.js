@@ -71,7 +71,7 @@ async function POST(req, res) {
     }
     res.status(401).json({ message: "passwords do not match" });
   } catch (error) {
-    // console.log(error);
+    console.log(error);
     res.status(401).json({ message: "Invalid Credentials" });
   }
 }

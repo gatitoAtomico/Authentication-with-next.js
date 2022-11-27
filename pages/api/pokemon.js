@@ -6,7 +6,7 @@ import isAuthenticatedMiddleware from "../../../utils/isAuthenticatedMiddleware"
 import React, { useState } from "react";
 
 async function GET(req, res) {
-  res.status(200).json({ name: "Pokemon" });
+  res.status(200).json({ name: "Pikachu" });
 }
 
 export default endpointHandler(isAuthenticatedMiddleware, { GET });

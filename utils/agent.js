@@ -15,8 +15,8 @@ let axiosInstance;
  */
 function getAxiosInstance(jwt, rfToken) {
   if (!axiosInstance) {
-    //console.log("this is the jwt", jwt);
-    //console.log("this is the rfToken", rfToken);
+    console.log("this is the jwt", jwt);
+    console.log("this is the rfToken", rfToken);
     axiosInstance = axios.create({
       baseURL: `${process.env.NEXT_PUBLIC_BASEURL}/api`,
       headers: {
@@ -32,7 +32,6 @@ function getAxiosInstance(jwt, rfToken) {
         // setCookie("jwt", jwtToken);
         //window.localStorage.setItem("jwt", response.data.jwtToken);
         axiosInstance.defaults.headers["authorization"] = `Bearer ${jwtToken}`;
-
         err.config.headers["authorization"] = `Bearer ${jwtToken}`;
         // err.config.baseURL = undefined;
         return axios.request(err.config);
@@ -45,6 +44,9 @@ function getAxiosInstance(jwt, rfToken) {
 
 export default {
   getUser: (jwt, rfToken) => {
+    return getAxiosInstance(jwt, rfToken).get("/auth/analysisAutomation");
+  },
+  getPokemon: (jwt, rfToken) => {
     return getAxiosInstance(jwt, rfToken).get("/auth/analysisAutomation");
   },
 };

@@ -1,6 +1,10 @@
 import { NextApiResponse, NextApiRequest } from "next";
 import HTTPError from "./HTTPError";
 
+let a = () => {
+  console.log("apollon re mounia");
+};
+
 function runMiddleware(req, res, ...args) {
   if (args.length > 0) {
     if (typeof args[0] === "function") {
@@ -40,6 +44,8 @@ export default function endpointHandler(...args) {
   return async (req, res) => {
     let middleware = [...args];
     try {
+      console.log("before middleware run");
+
       await runMiddleware(req, res, ...middleware);
       if (httpFunctions[req.method]) {
         await httpFunctions[req.method](req, res);
