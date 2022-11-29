@@ -17,11 +17,8 @@ let axiosInstance;
 function getAxiosInstance(jwt, rfToken) {
   console.log("axios instance");
   if (!axiosInstance) {
-<<<<<<< Updated upstream
     console.log("this is the jwt", jwt);
     console.log("this is the rfToken", rfToken);
-=======
->>>>>>> Stashed changes
     axiosInstance = axios.create({
       baseURL: `${process.env.NEXT_PUBLIC_BASEURL}/api`,
       headers: {
