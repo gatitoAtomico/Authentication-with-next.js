@@ -2,6 +2,7 @@ import axios from "axios";
 import { setCookie } from "cookies-next";
 
 export const refreshToken = async (rfToken) => {
+  console.log("refresh token function");
   return axios
     .post(`${process.env.NEXT_PUBLIC_BASEURL}/api/refreshJwt`, {
       refreshToken: rfToken,
@@ -14,9 +15,13 @@ let axiosInstance;
  * @returns {axios}
  */
 function getAxiosInstance(jwt, rfToken) {
+  console.log("axios instance");
   if (!axiosInstance) {
+<<<<<<< Updated upstream
     console.log("this is the jwt", jwt);
     console.log("this is the rfToken", rfToken);
+=======
+>>>>>>> Stashed changes
     axiosInstance = axios.create({
       baseURL: `${process.env.NEXT_PUBLIC_BASEURL}/api`,
       headers: {

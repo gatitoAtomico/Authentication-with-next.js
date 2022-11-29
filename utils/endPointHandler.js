@@ -44,8 +44,12 @@ export default function endpointHandler(...args) {
   return async (req, res) => {
     let middleware = [...args];
     try {
+<<<<<<< Updated upstream
       console.log("before middleware run");
 
+=======
+      console.log("request method", req.method);
+>>>>>>> Stashed changes
       await runMiddleware(req, res, ...middleware);
       if (httpFunctions[req.method]) {
         await httpFunctions[req.method](req, res);
