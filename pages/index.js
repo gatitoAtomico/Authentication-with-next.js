@@ -12,11 +12,7 @@ const Container = styled.div`
 
 export default function Home({ response }) {
   const regex = /(<([^>]+)>)/gi; //regular expression to remove al html tags
-<<<<<<< Updated upstream
-  return <Container>Pokemon</Container>;
-=======
   return <Container>This is the index page</Container>;
->>>>>>> Stashed changes
 }
 
 //add jwt token in the cookie and pass it in the server
