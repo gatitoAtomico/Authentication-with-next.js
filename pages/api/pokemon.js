@@ -2,7 +2,7 @@
 
 import axios from "axios";
 import endpointHandler from "../../../utils/endPointHandler";
-import isAuthenticatedMiddleware from "../../../utils/isAuthenticatedMiddleware";
+import isAuthenticatedMiddleware from "../../utils/isAuthenticatedMiddleware";
 import React, { useState } from "react";
 
 async function GET(req, res) {

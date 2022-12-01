@@ -9,7 +9,6 @@ export default async function (req, res, next) {
 
   let jwt = req.headers.authorization.replace("Bearer ", "");
   //console.log("exists", jwt.substring(0, 10));
-
   console.log("this is from an authenticated endpoint");
 
   try {
