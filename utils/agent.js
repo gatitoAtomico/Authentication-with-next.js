@@ -2,7 +2,7 @@ import axios from "axios";
 import { setCookie } from "cookies-next";
 
 export const refreshToken = async (rfToken) => {
-  console.log("refresh token function");
+  console.log("refresh token function test");
   return axios
     .post(`${process.env.NEXT_PUBLIC_BASEURL}/api/refreshJwt`, {
       refreshToken: rfToken,
